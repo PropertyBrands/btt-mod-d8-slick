@@ -1,0 +1,29 @@
+<?php
+/**
+ * @file slick.module
+ *
+ * @ingroup slick
+ *
+ * Includes hook implementations required for the Slick module
+ *
+ */
+
+/**
+ * Implements hook_theme
+ */
+function slick_theme() {
+
+  $return = array();
+  $defaults = array(
+    'file' => 'slick.theme.inc',
+  );
+
+  $return['slick_slideshow'] = $defaults + array(
+    'variables' => array(
+      'slides' => NULL,
+      'config_eid' => NULL,
+    ),
+  );
+
+  return $return;
+}
