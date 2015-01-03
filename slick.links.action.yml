@@ -1,0 +1,15 @@
+# Add some local task links to facilitate navigation.
+
+slick.add_action:
+  route_name: slick_settings.add
+  title: 'Add Slideshow Settings'
+  appears_on:
+    - slick_settings.list
+
+slick.list_action:
+  route_name: slick_settings.list
+  title: 'Slideshow Settings'
+  appears_on:
+    - slick_settings.add
+    - slick_settings.edit
+    - slick_settings.delete

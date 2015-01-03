@@ -1,0 +1,6 @@
+name: 'Slick Slideshows'
+type: module
+description: 'Provides a field formatter, Views plugin, and Configuration entity for the Slick slideshow.'
+package: Slideshows
+core: 8.x
+dependencies:

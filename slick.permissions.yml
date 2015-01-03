@@ -1,0 +1,4 @@
+#Define the administer permission for the slick_settings config entity.
+'administer slick settings':
+  title: 'Administer Slick Slideshows'
+  description: Create and edit slideshow settings.

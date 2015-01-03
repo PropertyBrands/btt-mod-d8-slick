@@ -1,0 +1,6 @@
+slick_settings.list:
+  title: 'Slick Slideshow Settings'
+  parent: system.admin_config_media
+  description: 'Add Slideshow Settings to be used throughout the site.'
+  route_name: slick_settings.list
+  weight: 999
