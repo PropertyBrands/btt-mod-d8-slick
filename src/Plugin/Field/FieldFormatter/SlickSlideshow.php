@@ -10,6 +10,8 @@ namespace Drupal\slick\Plugin\Field\FieldFormatter;
 use Drupal\image\Plugin\Field\FieldFormatter\ImageFormatterBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Field\FieldItemListInterface;
+use Drupal\Core\Url;
+use Drupal\slick\Entity\SlickSettings;
 
 /**
  * Plugin implementation of the 'slick_slideshow' formatter.
@@ -41,7 +43,7 @@ class SlickSlideshow extends ImageFormatterBase {
       '#title' => t('Slick Slideshow Settings'),
       '#type' => 'select',
       '#default_value' => $this->getSetting('slideshow_settings'),
-      '#options' => \Drupal\slick\Entity\SlickSettings::as_options(),
+      '#options' => SlickSettings::as_options(),
     );
 
     return $element;
@@ -61,9 +63,18 @@ class SlickSlideshow extends ImageFormatterBase {
    * {@inheritdoc}
    */
   public function viewElements(FieldItemListInterface $items) {
-    $elements = array();
-    $settings = $this->getSetting('slideshow_settings');
-    // @todo
-    return $elements;
+    $slides = array();
+    foreach ($items as $delta => $item) {
+      if ($item->entity) {
+        $image_uri = $item->entity->getFileUri();
+        $slides[] = file_create_url($image_uri);
+      }
+    }
+    $element = array(
+      '#theme' => 'slick_slideshow',
+      '#config_machine_name' => $this->getSetting('slideshow_settings'),
+      '#slides' => $slides
+    );
+    return \Drupal::service('renderer')->render($element, FALSE);
   }
 }
