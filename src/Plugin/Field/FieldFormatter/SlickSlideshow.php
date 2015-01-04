@@ -22,27 +22,27 @@ use Drupal\Core\Field\FieldItemListInterface;
  *   }
  * )
  */
-class SlickSlideshow extends ImageFormatterBase
-{
+class SlickSlideshow extends ImageFormatterBase {
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function defaultSettings() {
+    return array(
+      'slideshow_settings' => '',
+    );
+  }
 
   /**
    * {@inheritdoc}
    */
   public function settingsForm(array $form, FormStateInterface $form_state) {
-    $options = array();
-    $slideshow_settings = entity_load_multiple('slick_settings');
-    foreach($slideshow_settings as $k => $v) {
-      $options[$k] = $v->label();
-    }
     $element['slideshow_settings'] = array(
       '#title' => t('Slick Slideshow Settings'),
       '#type' => 'select',
       '#default_value' => $this->getSetting('slideshow_settings'),
-      '#options' => $options,
+      '#options' => \Drupal\slick\Entity\SlickSettings::as_options(),
     );
-
-    print '<pre>';
-    print_r($this); print '</pre>';
 
     return $element;
   }
@@ -51,7 +51,9 @@ class SlickSlideshow extends ImageFormatterBase
    * {@inheritdoc}
    */
   public function settingsSummary() {
-    $summary[] = t('Using settings: ' . $this->getSetting('slideshow_settings'));
+    $setting = $this->getSetting('slideshow_settings');
+    $str = !empty($setting) ? $setting : 'none selected';
+    $summary[] = t('Using settings: ')  . $str;
     return $summary;
   }
 
@@ -60,9 +62,8 @@ class SlickSlideshow extends ImageFormatterBase
    */
   public function viewElements(FieldItemListInterface $items) {
     $elements = array();
-    //print_r($items);
-    print '<pre>';
-    print_r($this); print '</pre>';
+    $settings = $this->getSetting('slideshow_settings');
+    // @todo
     return $elements;
   }
 }
