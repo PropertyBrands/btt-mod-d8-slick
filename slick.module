@@ -15,14 +15,13 @@ function slick_theme() {
 
   $return = array();
   $defaults = array(
-    'file' => 'slick.theme.inc',
+    'file' => 'slick.pages.inc',
   );
 
   $return['slick_slideshow'] = $defaults + array(
     'variables' => array(
       'slides' => NULL,
-      'config_eid' => NULL,
-      'thumbs' => NULL,
+      'config_machine_name' => NULL,
     ),
   );
 
