@@ -20,6 +20,9 @@ slick.slick_settings.*:
     label:
       type: label
       label: 'Label'
+    slide_image_style:
+      type: string
+      label: 'Slide Image Style'
     accessibility:
       type: boolean
       label: 'Accessibility'
