@@ -44,7 +44,7 @@ class SlickSlideshow extends ImageFormatterBase
 
     print '<pre>';
     print_r($this); print '</pre>';
-    
+
     return $element;
   }
 
