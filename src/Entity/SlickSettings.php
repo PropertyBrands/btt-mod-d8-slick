@@ -109,5 +109,8 @@ class SlickSettings extends ConfigEntityBase {
    */
   public $autoplay_speed;
 
+  public static function load_multiple(array $eids) {
+
+  }
 
 }
