@@ -4,3 +4,4 @@ description: 'Provides a field formatter, Views plugin, and Configuration entity
 package: Slideshows
 core: 8.x
 dependencies:
+  -libraries
