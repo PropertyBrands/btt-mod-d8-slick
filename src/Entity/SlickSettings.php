@@ -109,4 +109,16 @@ class SlickSettings extends ConfigEntityBase {
    */
   public $autoplay_speed;
 
+  /**
+   * Return as FAPI formatted options
+   * @return array
+   */
+  public static function as_options() {
+    $options = array();
+    $slideshow_settings = entity_load_multiple('slick_settings');
+    foreach($slideshow_settings as $k => $v) {
+      $options[$k] = $v->label();
+    }
+    return $options;
+  }
 }
