@@ -10,8 +10,8 @@ namespace Drupal\slick\Plugin\Field\FieldFormatter;
 use Drupal\image\Plugin\Field\FieldFormatter\ImageFormatterBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Field\FieldItemListInterface;
-use Drupal\Core\Url;
 use Drupal\slick\Entity\SlickSettings;
+
 
 /**
  * Plugin implementation of the 'slick_slideshow' formatter.
@@ -63,18 +63,53 @@ class SlickSlideshow extends ImageFormatterBase {
    * {@inheritdoc}
    */
   public function viewElements(FieldItemListInterface $items) {
-    $slides = array();
+    $entity = SlickSettings::load($this->getSetting('slideshow_settings'));
+    $this->slick_settings = $entity;
+    // Collect cache tags to be added for each item in the field.
+    $cache_tags = array();
+    if (!empty($entity->slide_image_style)) {
+      $image_style = entity_load('image_style', $entity->slide_image_style);
+      $cache_tags = $image_style->getCacheTags();
+    }
     foreach ($items as $delta => $item) {
       if ($item->entity) {
-        $image_uri = $item->entity->getFileUri();
-        $slides[] = file_create_url($image_uri);
+        if (isset($link_file)) {
+          $image_uri = $item->entity->getFileUri();
+          $uri = array(
+            'path' => file_create_url($image_uri),
+            'options' => array(),
+          );
+        }
+
+        // Extract field item attributes for the theme function, and unset them
+        // from the $item so that the field template does not re-render them.
+        $item_attributes = $item->_attributes;
+        unset($item->_attributes);
+
+        $elements[$delta] = array(
+          '#theme' => 'image_formatter',
+          '#item' => $item,
+          '#item_attributes' => $item_attributes,
+          '#image_style' => $entity->slide_image_style,
+          '#path' => isset($uri) ? $uri : '',
+          '#cache' => array(
+            'tags' => $cache_tags,
+          ),
+        );
       }
     }
-    $element = array(
-      '#theme' => 'slick_slideshow',
-      '#config_machine_name' => $this->getSetting('slideshow_settings'),
-      '#slides' => $slides
-    );
-    return \Drupal::service('renderer')->render($element, FALSE);
+
+    return $elements;
   }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function view(FieldItemListInterface $items) {
+    $render['#theme'] = 'slick_slideshow';
+    $render['#slides'] = $this->viewElements($items);
+    $render['#slick_settings'] = $this->slick_settings;
+    return $render;
+  }
+
 }
