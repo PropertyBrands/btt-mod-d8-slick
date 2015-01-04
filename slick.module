@@ -22,6 +22,7 @@ function slick_theme() {
     'variables' => array(
       'slides' => NULL,
       'config_eid' => NULL,
+      'thumbs' => NULL,
     ),
   );
 
