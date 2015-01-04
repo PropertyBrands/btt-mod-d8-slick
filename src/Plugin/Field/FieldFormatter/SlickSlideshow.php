@@ -8,12 +8,11 @@
 namespace Drupal\slick\Plugin\Field\FieldFormatter;
 
 use Drupal\image\Plugin\Field\FieldFormatter\ImageFormatterBase;
-use Drupal\image\Entity\ImageStyle;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Field\FieldItemListInterface;
 
 /**
- * Plugin implementation of the 'image_raw_formatter' formatter.
+ * Plugin implementation of the 'slick_slideshow' formatter.
  *
  * @FieldFormatter(
  *   id = "slick_slideshow",
