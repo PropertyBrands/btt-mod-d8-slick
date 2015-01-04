@@ -21,9 +21,10 @@ function slick_theme() {
   $return['slick_slideshow'] = $defaults + array(
     'variables' => array(
       'slides' => NULL,
-      'config_machine_name' => NULL,
+      'slick_settings' => NULL,
     ),
   );
+
 
   return $return;
 }
