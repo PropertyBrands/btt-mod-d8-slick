@@ -108,6 +108,15 @@ class SlickSettingsBase extends EntityForm {
       '#disabled' => !$settings->isNew(),
     );
 
+    $image_style_options = image_style_options();
+    $form['slide_image_style'] = array(
+      '#type' => 'select',
+      '#title' => t('Main Image Style'),
+      '#description' => t('This image style will be applied to the slides.'),
+      '#options' => $image_style_options,
+      '#default_value' => $settings->slide_image_style,
+    );
+
     $form['autoplay'] = array(
       '#type' => 'checkbox',
       '#title' => $this->t('Autoplay'),

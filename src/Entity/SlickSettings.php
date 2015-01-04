@@ -66,6 +66,15 @@ class SlickSettings extends ConfigEntityBase {
   public $label;
 
   /**
+   * Setting: Slide Image Style
+   *
+   * @var string
+   *
+   * The machine name of an image style to use for slides
+   */
+  public $slide_image_style;
+
+  /**
    * Setting: accessibility
    *
    * Defaults to TRUE
