@@ -39,33 +39,3 @@ function slick_theme() {
 
   return $return;
 }
-
-/**
- * Implements hook_page_attachments
- */
-function slick_page_attachments(&$page) {
-  if(slick_attach()) {
-    $page['#attached']['library'][] = 'slick/slick';
-    $page['#attached']['library'][] = 'slick/behaviors';
-  }
-}
-
-/**
- * Static cache to check whether to include the JS library
- *
- * As of now, no reason to store the slider instances. Only flag as needing
- * to add our library in hook_page_attachments.
- *
- * @see slick_page_attachments
- *
- * @var boolean
- * @return boolean
- *
- */
-function slick_attach($attach = FALSE) {
-  $data =& drupal_static(__FUNCTION__, "");
-  if($attach) {
-    $data = $attach;
-  }
-  return $data;
-}
