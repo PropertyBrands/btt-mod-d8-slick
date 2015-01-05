@@ -7,13 +7,11 @@
  * Contains theme callbacks for the slick module
  */
 
-use Drupal\slick\Entity\SlickSettings;
 use Drupal\Component\Utility\Unicode;
 
-function slick_preprocess_slick_slideshow(&$variables) {
-  if(!slick_attach()) {
-    slick_attach(TRUE);
-  }
+function template_preprocess_slick_slideshow(&$variables) {
+  $variables['#attached']['library'][] = 'slick/slick';
+  $variables['#attached']['library'][] = 'slick/behaviors';
 }
 
 /**

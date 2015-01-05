@@ -15,4 +15,4 @@ behaviors:
     assets/js/slick.jquery.js: {}
   dependencies:
     - core/jquery
-    - slick.slick
+    - slick/slick
