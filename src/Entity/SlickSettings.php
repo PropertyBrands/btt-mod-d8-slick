@@ -45,6 +45,20 @@ use Drupal\Core\Config\Entity\ConfigEntityBase;
 class SlickSettings extends ConfigEntityBase {
 
   /**
+   * The prefix which will be added to slideshow HTML IDs
+   *
+   * @const string
+   */
+  const SLIDESHOW_ID_PREFIX = 'slick_slideshow';
+
+  /**
+   * The suffix which will be added to slideshow HTML IDs for the sync'd carousel
+   *
+   * @const string
+   */
+  const CAROUSEL_SUFFIX = 'carousel';
+
+  /**
    * The slick_settings ID.
    *
    * @var string

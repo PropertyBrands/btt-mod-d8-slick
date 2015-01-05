@@ -115,9 +115,16 @@ class SlickSlideshow extends ImageFormatterBase {
    * {@inheritdoc}
    */
   public function view(FieldItemListInterface $items) {
-    $render['#theme'] = 'slick_slideshow';
-    $render['#slides'] = $this->viewElements($items);
-    $render['#slick_settings'] = $this->slick_settings;
+    $field = $items->getFieldDefinition();
+    $render = array(
+      '#theme' => 'slick_slideshow',
+      '#slides' => $this->viewElements($items),
+      '#slick_settings' => $this->slick_settings,
+      '#slideshow_id' => SlickSettings::SLIDESHOW_ID_PREFIX . '_' . $field->field_name,
+      '#carousel' => NULL, //@todo
+      '#carousel_id' => SlickSettings::SLIDESHOW_ID_PREFIX . '_' . $field->field_name . '_' . SlickSettings::CAROUSEL_SUFFIX,
+      '#carousel_settings' => NULL, //@todo
+    );
     return $render;
   }
 
