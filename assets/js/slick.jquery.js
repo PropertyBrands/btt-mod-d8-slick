@@ -3,7 +3,7 @@
     attach: function(context, settings) {
       if(settings.hasOwnProperty('slickSlideshows')) {
         $.each(settings.slickSlideshows, function(i, e) {
-          $('#' + i, context).slick(e);
+          $('#' + i, context).once('slickSlideshow').slick(e);
         });
       }
     }
