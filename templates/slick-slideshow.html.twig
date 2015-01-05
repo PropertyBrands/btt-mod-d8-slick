@@ -1,3 +1,21 @@
+{#
+/**
+ * @file
+ * Default theme implementation of a Slick Slideshow.
+ *
+ * Available variables:
+ * - slideshow: HTML ID for the main slideshow. Slideshow initialization is bound to this attribute
+ * - slides: The slides for the main slider.
+ * - slick_settings: Slideshow settings for the main slideshow (optional)
+ * - carousel: A carousel sync'd to the main slideshow
+ * - carousel_settings: Slideshow settings for the carousel (optional)
+ * - carousel_id: HTML ID for the carousel
+ *
+ * @see template_preprocess_slick_slideshow()
+ *
+ * @ingroup themeable
+ */
+#}
 <div id="{{ slideshow_id }}" class="slick-slider">
     {% for slide in slides %}
         <div class="slick-slide-{{ loop.index }}">
@@ -5,3 +23,13 @@
         </div>
     {% endfor %}
 </div>
+
+{% if carousel is not null and carousel_settings is not null %}
+    <div id="{{ carousel_id }}" class="slick-slider">
+        {% for c in carousel %}
+            <div class="slick-slide-{{ loop.index }}">
+                {{ c }}
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}
