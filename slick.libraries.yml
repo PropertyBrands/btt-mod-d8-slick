@@ -1,4 +1,4 @@
-slick.slick:
+slick:
   version: VERSION
   css:
     theme:
@@ -9,7 +9,7 @@ slick.slick:
     - core/jquery
     - core/drupalSettings
 
-slick.behaviors:
+behaviors:
   version: VERSION
   js:
     assets/js/slick.jquery.js: {}
