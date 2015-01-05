@@ -12,7 +12,6 @@
  * Implements hook_theme
  */
 function slick_theme() {
-
   $return = array();
   $defaults = array(
     'file' => 'slick.pages.inc',
@@ -22,9 +21,51 @@ function slick_theme() {
     'variables' => array(
       'slides' => NULL,
       'slick_settings' => NULL,
+      'slideshow_id' => NULL,
+      'carousel_nav' => NULL,
+      'carousel_id' => NULL,
+      'carousel_settings' => NULL,
     ),
   );
 
+  $return['slick_lazy_image'] = $defaults + array(
+    'variables' => array(
+      'item' => NULL,
+      'item_attributes' => NULL,
+      'path' => NULL,
+      'image_style' => NULL
+    ),
+  );
 
   return $return;
+}
+
+/**
+ * Implements hook_page_attachments
+ */
+function slick_page_attachments(&$page) {
+  if(slick_attach()) {
+    $page['#attached']['library'][] = 'slick/slick';
+    $page['#attached']['library'][] = 'slick/behaviors';
+  }
+}
+
+/**
+ * Static cache to check whether to include the JS library
+ *
+ * As of now, no reason to store the slider instances. Only flag as needing
+ * to add our library in hook_page_attachments.
+ *
+ * @see slick_page_attachments
+ *
+ * @var boolean
+ * @return boolean
+ *
+ */
+function slick_attach($attach = FALSE) {
+  $data =& drupal_static(__FUNCTION__, "");
+  if($attach) {
+    $data = $attach;
+  }
+  return $data;
 }
