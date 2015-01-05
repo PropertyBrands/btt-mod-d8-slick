@@ -1,3 +1,7 @@
 <div class="slick-slider">
-    {{ slides }}
+    {% for slide in slides %}
+        <div class="slick-slide-{{ loop.index }}">
+            {{ slide }}
+        </div>
+    {% endfor %}
 </div>
