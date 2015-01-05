@@ -10,8 +10,15 @@
 use Drupal\Component\Utility\Unicode;
 
 function template_preprocess_slick_slideshow(&$variables) {
+  $config_entity = $variables['slick_settings'];
   $variables['#attached']['library'][] = 'slick/slick';
   $variables['#attached']['library'][] = 'slick/behaviors';
+  $variables['#attached']['drupalSettings']['slickSlideshows'][$variables['slideshow_id']] = array(
+    'autoplay' => $config_entity->autoplay,
+    'autoplaySpeed' => $config_entity->autoplay_speed,
+    'accessibility' => $config_entity->accessibility,
+    'adaptiveHeight' => $config_entity->adaptive_height,
+  );
 }
 
 /**
