@@ -1,7 +1,7 @@
 (function($) {
   Drupal.behaviors.slickSlideshows = {
     attach: function(context, settings) {
-      //@todo....
+      $('.slick-slider').slick();
     }
   };
 })(jQuery);
