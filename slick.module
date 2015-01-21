@@ -37,5 +37,9 @@ function slick_theme() {
     ),
   );
 
+  $return['slick_break_point'] = $defaults + array(
+    'render element' => 'element',
+  );
+
   return $return;
 }

@@ -145,6 +145,90 @@ class SlickSettingsBase extends EntityForm {
       '#default_value' => !empty($settings->id) ? $settings->adaptive_height : TRUE,
     );
 
+    $form['arrows'] = array(
+      '#type' => 'checkbox',
+      '#title' => $this->t('Arrows'),
+      '#description' => $this->t('Prev/Next Arrows.'),
+      '#default_value' => !empty($settings->id) ? $settings->arrows : TRUE,
+    );
+
+    $form['as_nav_for'] = array(
+      '#type' => 'textfield',
+      '#title' => $this->t('As Navigation For'),
+      '#description' => $this->t('A CSS selector of another slideshow to sync.'),
+      '#default_value' => !empty($settings->id) ? $settings->as_nav_for : '',
+    );
+
+    $form['carousel_nav'] = array(
+      '#type' => 'checkbox',
+      '#title' => $this->t('Carousel Navigation'),
+      '#description' => $this->t('Adds a syncronized slider to the page to use a navigation.'),
+      '#default_value' => !empty($settings->id) ? $settings->carousel_nav : FALSE,
+    );
+
+    $form['carousel_image_style'] = array(
+      '#type' => 'select',
+      '#title' => t('Carousel Image Style'),
+      '#description' => t('This image style will be applied to the carousel slides.'),
+      '#options' => $image_style_options,
+      '#default_value' => !empty($settings->id) ? $settings->carousel_image_style : '',
+    );
+
+    $form['append_arrows'] = array(
+      '#type' => 'textfield',
+      '#title' => $this->t('Append Arrows'),
+      '#description' => $this->t('Change where the navigation arrows are attached (Selector, htmlString, Array, Element, jQuery object).'),
+      '#default_value' => !empty($settings->id) ? $settings->append_arrows : '',
+    );
+
+    $form['prev_arrow'] = array(
+      '#type' => 'textfield',
+      '#title' => $this->t('Previous Arrow'),
+      '#description' => $this->t('Allows you to select a node or customize the HTML for the "Previous" arrow.'),
+      '#default_value' => !empty($settings->id) ? $settings->prev_arrow : '<button type="button" class="slick-prev">Previous</button>',
+    );
+
+    $form['next_arrow'] = array(
+      '#type' => 'textfield',
+      '#title' => $this->t('Next Arrow'),
+      '#description' => $this->t('Allows you to select a node or customize the HTML for the "Next" arrow.'),
+      '#default_value' => !empty($settings->id) ? $settings->next_arrow : '<button type="button" class="slick-next">Next</button>',
+    );
+
+    $form['center_mode'] = array(
+      '#type' => 'checkbox',
+      '#title' => $this->t('Center Mode'),
+      '#description' => $this->t('Enables centered view with partial prev/next slides. Use with odd numbered slidesToShow counts.'),
+      '#default_value' => !empty($settings->id) ? $settings->center_mode : TRUE,
+    );
+
+    $form['center_padding'] = array(
+      '#type' => 'textfield',
+      '#title' => $this->t('Center Padding'),
+      '#description' => $this->t('Enables centered view with partial prev/next slides. Use with odd numbered slidesToShow counts.'),
+      '#default_value' => !empty($settings->id) ? $settings->center_padding : '',
+    );
+
+    $form['css_ease'] = array(
+      '#type' => 'textfield',
+      '#title' => $this->t('CSS Easing'),
+      '#description' => $this->t('CSS3 Animation Easing'),
+      '#default_value' => !empty($settings->id) ? $settings->center_padding : 'ease',
+    );
+
+    $form['custom_paging'] = array(
+      '#type' => 'textfield',
+      '#title' => $this->t('Custom Paging'),
+      '#description' => $this->t('Custom paging function.'),
+      '#default_value' => !empty($settings->id) ? $settings->custom_paging : '',
+    );
+
+    $form['break_point'] = array(
+      '#type' => 'slick_break_point',
+      '#title' => $this->t('Breakpoints'),
+      '#description' => $this->t('Responsive breakpoints'),
+      '#default_value' => array(),
+    );
 
     // Return the form.
     return $form;

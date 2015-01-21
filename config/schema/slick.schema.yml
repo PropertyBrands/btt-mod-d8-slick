@@ -35,3 +35,33 @@ slick.slick_settings.*:
     autoplay_speed:
       type: integer
       label: 'Autoplay Speed'
+    arrows:
+      type: boolean
+      label: 'Arrows'
+    as_nav_for:
+      type: string
+      label: 'As Navigation For'
+    carousel_nav:
+      type: boolean
+      label: 'Carousel Navigation'
+    append_arrows:
+      type: string
+      label: 'Append Arrows'
+    prev_arrow:
+      type: string
+      label: 'Previous Arrow'
+    next_arrow:
+      type: string
+      label: 'Next Arrow'
+    center_mode:
+      type: boolean
+      label: 'Center Mode'
+    center_padding:
+      type: string
+      label: 'Center Padding'
+    css_ease:
+      type: string
+      label: 'CSS3 Easing'
+    custom_paging:
+      type: string
+      label: 'Custom Paging'

@@ -76,3 +76,6 @@ function template_preprocess_slick_lazy_image(&$variables) {
     $variables['url'] = _url($path, $options);
   }
 }
+
+function template_preprocess_slick_break_point(&$variables) {
+}

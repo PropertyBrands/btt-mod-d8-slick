@@ -31,7 +31,7 @@ class SlickSlideshow extends ImageFormatterBase {
    * Because we need to grab the image style in viewElements we will only
    * instantiate this once and store on the object.
    *
-   * @var Instance of Drupal\slick\Entity\SlickSettings
+   * @var \Drupal\slick\Entity\SlickSettings
    */
   public $slick_settings;
 
