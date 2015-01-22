@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Contains \Drupal\file\Element\ManagedFile.
+ * Contains \Drupal\slick\Element\SlickBreakPoint.
  */
 
 namespace Drupal\slick\Element;
@@ -38,30 +38,36 @@ class SlickBreakPoint extends FormElement {
    * {@inheritdoc}
    */
   public static function valueCallback(&$element, $input, FormStateInterface $form_state) {
-    return array(
-      'pixel_width' => $input['bp_pixels'],
-      'settings' => $input['bp_settings'],
-    );
+    kpr(func_get_args());
+    if(!empty($input)) {
+      return array(
+        'pixel_width' => $input['pixel_width'],
+        'settings_eid' => $input['settings_eid'],
+      );
+    } else {
+      return array(
+        'pixel_width' => $element['#default_value']['pixel_width'],
+        'settings_eid' => $element['#default_value']['settings_eid'],
+      );
+    }
   }
 
   /**
-   * Render API callback: Expands the managed_file element type.
+   * Render API callback: creates a SlickBreakPoint element.
    */
   public static function process(&$element, FormStateInterface $form_state, &$complete_form) {
-    $element['break_points'] = array(
-      '#type' => 'fieldset',
-      '#title' => t('Break Points'),
-    );
-
-    $element['break_points']['bp_pixels'] = array(
+    #kpr(func_get_args());
+    $element['pixel_width'] = array(
       '#type' => 'textfield',
       '#title' => t('Pixel Width to Break On'),
+      '#default_value' => $element['#value']['pixel_width'],
     );
-
-    $element['break_points']['bp_settings'] = array(
+    $element['settings_eid'] = array(
       '#title' => t('Break Point Settings'),
       '#type' => 'select',
+      '#empty_option' => t('None'),
       '#options' => SlickSettings::as_options(),
+      '#default_value' => $element['#value']['settings_eid'],
     );
 
     return $element;
@@ -72,6 +78,7 @@ class SlickBreakPoint extends FormElement {
    */
   public static function validate(&$element, FormStateInterface $form_state, &$complete_form) {
     kpr(func_get_args()); die;
+    $form_state->setValueForElement($element, $element['#value']);
   }
 
 }
