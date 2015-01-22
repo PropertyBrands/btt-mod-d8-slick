@@ -243,6 +243,17 @@ class SlickSettings extends ConfigEntityBase {
   public $custom_paging;
 
   /**
+   * Setting: responsive
+   *
+   * Defaults to null
+   *
+   * @var array
+   *
+   * Array of breakpoints and settings entity ids
+   */
+  public $responsive;
+
+  /**
    * Return as FAPI formatted options
    * @return array
    */
