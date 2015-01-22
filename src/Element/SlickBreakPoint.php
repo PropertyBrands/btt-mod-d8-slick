@@ -38,7 +38,6 @@ class SlickBreakPoint extends FormElement {
    * {@inheritdoc}
    */
   public static function valueCallback(&$element, $input, FormStateInterface $form_state) {
-    kpr(func_get_args());
     if(!empty($input)) {
       return array(
         'pixel_width' => $input['pixel_width'],
@@ -56,7 +55,6 @@ class SlickBreakPoint extends FormElement {
    * Render API callback: creates a SlickBreakPoint element.
    */
   public static function process(&$element, FormStateInterface $form_state, &$complete_form) {
-    #kpr(func_get_args());
     $element['pixel_width'] = array(
       '#type' => 'textfield',
       '#title' => t('Pixel Width to Break On'),
@@ -77,7 +75,6 @@ class SlickBreakPoint extends FormElement {
    * Validate
    */
   public static function validate(&$element, FormStateInterface $form_state, &$complete_form) {
-    kpr(func_get_args()); die;
     $form_state->setValueForElement($element, $element['#value']);
   }
 
