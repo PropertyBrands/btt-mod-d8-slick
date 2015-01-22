@@ -65,3 +65,13 @@ slick.slick_settings.*:
     custom_paging:
       type: string
       label: 'Custom Paging'
+    responsive:
+      type: mapping
+      label: 'Breakpoints'
+      mapping:
+        pixel_width:
+          type: integer
+          label: 'Pixel Width'
+        settings_eid:
+          type: integer
+          label: 'Slideshow Settings'
