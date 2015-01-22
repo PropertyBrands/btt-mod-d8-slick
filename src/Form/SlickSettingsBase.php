@@ -224,8 +224,8 @@ class SlickSettingsBase extends EntityForm {
     );
 
     $form['responsive_wrap'] = array(
-      '#type' => 'fieldset',
-      '#collapsible' => TRUE,
+      '#type' => 'details',
+      '#open' => FALSE,
       '#title' => $this->t('Responsive Breakpoints'),
       '#description' => $this->t('Breakpoints should be entered as an integer. The unit of measurement is pixels.'),
     );
