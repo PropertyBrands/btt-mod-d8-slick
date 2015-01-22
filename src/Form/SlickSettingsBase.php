@@ -230,14 +230,17 @@ class SlickSettingsBase extends EntityForm {
       '#description' => $this->t('Breakpoints should be entered as an integer. The unit of measurement is pixels.'),
     );
 
+    $responsive_settings = !empty($settings->id)
+      ? array(
+          'pixel_width' => $settings->responsive['pixel_width'],
+          'settings_eid' => $settings->responsive['settings_eid'],
+        )
+      : array();
     $form['responsive_wrap']['responsive'] = array(
       '#tree' => TRUE,
       '#type' => 'slick_break_point',
       '#title' => $this->t('Configure Breakpoint'),
-      '#default_value' => array(
-        'pixel_width' => 640,
-        'settings_eid' => 'default',
-      ),
+      '#default_value' => $responsive_settings,
     );
 
     // Return the form.

@@ -73,5 +73,5 @@ slick.slick_settings.*:
           type: integer
           label: 'Pixel Width'
         settings_eid:
-          type: integer
+          type: string
           label: 'Slideshow Settings'
