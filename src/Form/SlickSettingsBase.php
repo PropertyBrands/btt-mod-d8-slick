@@ -223,6 +223,10 @@ class SlickSettingsBase extends EntityForm {
       '#default_value' => !empty($settings->id) ? $settings->custom_paging : '',
     );
 
+    /**
+     * Responsive Breakpoint handling
+     */
+
     $form['responsive_wrap'] = array(
       '#type' => 'details',
       '#open' => FALSE,
@@ -230,18 +234,69 @@ class SlickSettingsBase extends EntityForm {
       '#description' => $this->t('Breakpoints should be entered as an integer. The unit of measurement is pixels.'),
     );
 
-    $responsive_settings = !empty($settings->id)
-      ? array(
-          'pixel_width' => $settings->responsive['pixel_width'],
-          'settings_eid' => $settings->responsive['settings_eid'],
-        )
-      : array();
+    $value = $form_state->get('responsive_count');
+    $trigger = $form_state->getTriggeringElement();
+
+    if (is_null($value) && empty($settings->id)) {
+      $value = 1;
+      $responsive_settings = array(
+        array(
+          'pixel_width' => NULL,
+          'settings_eid' => NULL,
+        ),
+      );
+      $form_state->set('responsive_count', $value);
+    } else if(is_null($trigger)) {
+      $responsive_settings = $settings->responsive;
+      $value = count($responsive_settings);
+      $form_state->set('responsive_count', $value);
+    }
+
+
     $form['responsive_wrap']['responsive'] = array(
       '#tree' => TRUE,
-      '#type' => 'slick_break_point',
-      '#title' => $this->t('Configure Breakpoint'),
-      '#default_value' => $responsive_settings,
+      '#type' => 'item',
+      '#prefix' => '<div id="responsive-replace">',
+      '#suffix' => '</div>'
     );
+    // Add elements that don't already exist
+    for ($delta = 0; $delta < $value; $delta++) {
+      if (!isset($form['responsive_wrap']['responsive'][$delta])) {
+        $element = array(
+          '#tree' => TRUE,
+          '#type' => 'slick_break_point',
+          '#title' => $this->t('Configure Breakpoint'),
+          '#default_value' => $responsive_settings[$delta],
+          '#suffix' => '<hr />'
+        );
+        $form['responsive_wrap']['responsive'][$delta] = $element;
+      }
+    }
+
+    $form['responsive_wrap']['responsive_add'] = array(
+      '#type' => 'submit',
+      '#name' => 'responsive_add',
+      '#value' => t('Add Breakpoint'),
+      '#submit' => array(array($this, 'addBreakPoint')),
+      '#ajax' => array(
+        'callback' => array($this, 'BreakPointCallback'),
+        'wrapper' => 'responsive-replace',
+        'effect' => 'fade',
+      ),
+    );
+
+    $form['responsive_wrap']['responsive_remove'] = array(
+      '#type' => 'submit',
+      '#name' => 'responsive_remove',
+      '#value' => t('Remove Breakpoint'),
+      '#submit' => array(array($this, 'RemoveBreakPoint')),
+      '#ajax' => array(
+        'callback' => array($this, 'BreakPointCallback'),
+        'wrapper' => 'responsive-replace',
+        'effect' => 'fade',
+      ),
+    );
+
 
     // Return the form.
     return $form;
@@ -306,7 +361,6 @@ class SlickSettingsBase extends EntityForm {
    */
   public function validate(array $form, FormStateInterface $form_state) {
     parent::validate($form, $form_state);
-
     // Add code here to validate your config entity's form elements.
     // Nothing to do here.
   }
@@ -354,4 +408,23 @@ class SlickSettingsBase extends EntityForm {
     $form_state->setRedirect('slick_settings.list');
   }
 
+  public function addBreakPoint(array &$form, FormStateInterface &$form_state) {
+    $c = $form_state->get('responsive_count') + 1;
+    $form_state->set('responsive_count', $c);
+    $form_state->setRebuild(TRUE);
+  }
+
+  public function RemoveBreakPoint(array &$form, FormStateInterface &$form_state) {
+    $c = $form_state->get('responsive_count') - 1;
+    $form_state->set('responsive_count', $c);
+    $form_state->setRebuild(TRUE);
+  }
+
+  public function BreakPointCallback(array &$form, FormStateInterface &$form_state) {
+    return $form['responsive_wrap']['responsive'];
+  }
+
+  public function submitForm(array &$form, FormStateInterface $form_state) {
+    parent::submitForm($form, $form_state);
+  }
 }
