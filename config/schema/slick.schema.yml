@@ -75,3 +75,6 @@ slick.slick_settings.*:
         settings_eid:
           type: string
           label: 'Slideshow Settings'
+        unslick:
+          type: boolean
+          label: 'Unset Slick Slideshow'

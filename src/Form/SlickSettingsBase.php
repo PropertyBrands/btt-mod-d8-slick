@@ -205,8 +205,8 @@ class SlickSettingsBase extends EntityForm {
     $form['center_padding'] = array(
       '#type' => 'textfield',
       '#title' => $this->t('Center Padding'),
-      '#description' => $this->t('Enables centered view with partial prev/next slides. Use with odd numbered slidesToShow counts.'),
-      '#default_value' => !empty($settings->id) ? $settings->center_padding : '',
+      '#description' => $this->t('Side padding when in center mode (px or %).'),
+      '#default_value' => !empty($settings->id) ? $settings->center_padding : '50px',
     );
 
     $form['css_ease'] = array(
@@ -236,13 +236,13 @@ class SlickSettingsBase extends EntityForm {
 
     $value = $form_state->get('responsive_count');
     $trigger = $form_state->getTriggeringElement();
-
     if (is_null($value) && empty($settings->id)) {
       $value = 1;
       $responsive_settings = array(
         array(
           'pixel_width' => NULL,
           'settings_eid' => NULL,
+          'unslick' => FALSE,
         ),
       );
       $form_state->set('responsive_count', $value);
@@ -251,7 +251,6 @@ class SlickSettingsBase extends EntityForm {
       $value = count($responsive_settings);
       $form_state->set('responsive_count', $value);
     }
-
 
     $form['responsive_wrap']['responsive'] = array(
       '#tree' => TRUE,

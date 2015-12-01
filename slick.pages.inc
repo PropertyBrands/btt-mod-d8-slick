@@ -18,6 +18,17 @@ function template_preprocess_slick_slideshow(&$variables) {
     'autoplaySpeed' => $config_entity->autoplay_speed,
     'accessibility' => $config_entity->accessibility,
     'adaptiveHeight' => $config_entity->adaptive_height,
+    'arrows' => $config_entity->arrows,
+    'asNavFor' => $config_entity->as_nav_for,
+    'carousel_nav' => $config_entity->carousel_nav,
+    'appendArrows' => $config_entity->append_arrows,
+    'prevArrow' => $config_entity->prev_arrow,
+    'nextArrow' => $config_entity->next_arrow,
+    'centerMode' => $config_entity->center_mode,
+    'centerPadding' => $config_entity->center_padding,
+    'cssEase' => $config_entity->css_ease,
+    'customPaging' => $config_entity->custom_paging,
+    'responsive' => $config_entity->responsive,
   );
 }
 

@@ -42,11 +42,13 @@ class SlickBreakPoint extends FormElement {
       return array(
         'pixel_width' => $input['pixel_width'],
         'settings_eid' => $input['settings_eid'],
+        'unslick' => $input['unslick'],
       );
     } else {
       return array(
         'pixel_width' => $element['#default_value']['pixel_width'],
         'settings_eid' => $element['#default_value']['settings_eid'],
+        'unslick' => $element['#default_value']['unslick'],
       );
     }
   }
@@ -59,6 +61,12 @@ class SlickBreakPoint extends FormElement {
       '#type' => 'textfield',
       '#title' => t('Pixel Width to Break On'),
       '#default_value' => $element['#value']['pixel_width'],
+    );
+    $element['unslick'] = array(
+      '#title' => t('Unset Slick Slideshow'),
+      '#type' => 'checkbox',
+      '#description' => t('This option will override the selection below.'),
+      '#default_value' => $element['#value']['unslick'],
     );
     $element['settings_eid'] = array(
       '#title' => t('Break Point Settings'),
