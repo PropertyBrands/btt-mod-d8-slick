@@ -71,7 +71,7 @@ class SlickSlideshow extends ImageFormatterBase {
   /**
    * {@inheritdoc}
    */
-  public function viewElements(FieldItemListInterface $items) {
+  public function viewElements(FieldItemListInterface $items, $langcode = NULL) {
     $entity = SlickSettings::load($this->getSetting('slideshow_settings'));
     $this->slick_settings = $entity;
     // Collect cache tags to be added for each item in the field.
@@ -114,7 +114,7 @@ class SlickSlideshow extends ImageFormatterBase {
   /**
    * {@inheritdoc}
    */
-  public function view(FieldItemListInterface $items) {
+  public function view(FieldItemListInterface $items, $langcode = NULL) {
     $field = $items->getFieldDefinition();
     $render = array(
       '#theme' => 'slick_slideshow',

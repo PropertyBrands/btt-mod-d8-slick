@@ -87,7 +87,6 @@ class SlickSettingsBase extends EntityForm {
     // class of our entity. Drupal knows which class to call from the
     // annotation on our class.
     $settings = $this->entity;
-
     // Build the form.
     $form['label'] = array(
       '#type' => 'textfield',

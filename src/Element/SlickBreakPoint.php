@@ -60,20 +60,26 @@ class SlickBreakPoint extends FormElement {
     $element['pixel_width'] = array(
       '#type' => 'textfield',
       '#title' => t('Pixel Width to Break On'),
-      '#default_value' => $element['#value']['pixel_width'],
+      '#default_value' => isset($element['#value']['pixel_width'])
+        ? $element['#value']['pixel_width']
+        : NULL,
     );
     $element['unslick'] = array(
       '#title' => t('Unset Slick Slideshow'),
       '#type' => 'checkbox',
       '#description' => t('This option will override the selection below.'),
-      '#default_value' => $element['#value']['unslick'],
+      '#default_value' => isset($element['#value']['unslick'])
+        ? $element['#value']['unslick']
+        : NULL,
     );
     $element['settings_eid'] = array(
       '#title' => t('Break Point Settings'),
       '#type' => 'select',
       '#empty_option' => t('None'),
       '#options' => SlickSettings::as_options(),
-      '#default_value' => $element['#value']['settings_eid'],
+      '#default_value' => isset($element['#value']['settings_eid'])
+        ? $element['#value']['settings_eid']
+        : NULL,
     );
 
     return $element;

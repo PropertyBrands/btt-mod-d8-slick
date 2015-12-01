@@ -23,6 +23,9 @@ slick.slick_settings.*:
     slide_image_style:
       type: string
       label: 'Slide Image Style'
+    carousel_image_style:
+      type: string
+      label: 'Carousel Image Style'
     accessibility:
       type: boolean
       label: 'Accessibility'
