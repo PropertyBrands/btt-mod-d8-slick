@@ -2,7 +2,7 @@
 # Here we define the paths for our entity type's admin UI.
 
 # This is the router item for listing all entities.
-slick_settings.list:
+entity.slick_settings.list:
   path: '/admin/config/media/slick'
   defaults:
     # '_entity_list' tells Drupal to use an entity list controller.
@@ -15,7 +15,7 @@ slick_settings.list:
     _permission: 'administer slick settings'
 
 # This is the router item for adding our entity.
-slick_settings.add:
+entity.slick_settings.add_form:
   path: '/admin/slick_settings/add'
   defaults:
     _title: 'Add Settings Group'
@@ -29,7 +29,7 @@ slick_settings.add:
     _entity_create_access: slick_settings
 
 # This is the router item for editing our entity.
-slick_settings.edit:
+entity.slick_settings.edit_form:
   # Parameters may be passed to the form via the URL path. We name the
   # parameter in the path by enclosing it in curly braces. For entity forms,
   # we include the entity ID in the path by including a parameter with the
@@ -47,7 +47,7 @@ slick_settings.edit:
     _entity_access: slick_settings.update
 
 # This is the router item for deleting an instance of our entity.
-slick_settings.delete:
+entity.slick_settings.delete_form:
   path: '/admin/slick_settings/manage/{slick_settings}/delete'
   defaults:
     _title: 'Delete Settings'

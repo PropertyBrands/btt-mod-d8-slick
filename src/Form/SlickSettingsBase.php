@@ -404,7 +404,7 @@ class SlickSettingsBase extends EntityForm {
     }
 
     // Redirect the user back to the listing route after the save operation.
-    $form_state->setRedirect('slick_settings.list');
+    $form_state->setRedirect('entity.slick_settings.list');
   }
 
   public function addBreakPoint(array &$form, FormStateInterface &$form_state) {

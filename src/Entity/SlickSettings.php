@@ -37,8 +37,8 @@ use Drupal\Core\Config\Entity\ConfigEntityBase;
  *     "label" = "label"
  *   },
  *   links = {
- *     "edit-form" = "slick_settings.edit",
- *     "delete-form" = "slick_settings.delete"
+ *     "edit-form" = "/admin/slick_settings/manage/{slick_settings}",
+ *     "delete-form" = "/admin/slick_settings/manage/{slick_settings}/delete"
  *   }
  * )
  */

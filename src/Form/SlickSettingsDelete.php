@@ -66,7 +66,7 @@ class SlickSettingsDelete extends EntityConfirmFormBase {
    *   The URL to go to if the user cancels the deletion.
    */
   public function getCancelUrl() {
-    return new Url('slick_settings.list');
+    return new Url('entity.slick_settings.list');
   }
 
   /**

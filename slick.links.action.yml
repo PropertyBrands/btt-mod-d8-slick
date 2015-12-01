@@ -1,15 +1,15 @@
 # Add some local task links to facilitate navigation.
 
 slick.add_action:
-  route_name: slick_settings.add
+  route_name: entity.slick_settings.add_form
   title: 'Add Slideshow Settings'
   appears_on:
-    - slick_settings.list
+    - entity.slick_settings.list
 
 slick.list_action:
-  route_name: slick_settings.list
+  route_name: entity.slick_settings.list
   title: 'Slideshow Settings'
   appears_on:
-    - slick_settings.add
-    - slick_settings.edit
-    - slick_settings.delete
+    - entity.slick_settings.add_form
+    - entity.slick_settings.edit_form
+    - entity.slick_settings.delete_form

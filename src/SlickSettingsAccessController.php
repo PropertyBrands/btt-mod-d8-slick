@@ -25,7 +25,7 @@ class SlickSettingsAccessController extends EntityAccessControlHandler {
   /**
    * {@inheritdoc}
    */
-  public function checkAccess(EntityInterface $entity, $operation, $langcode, AccountInterface $account) {
+  public function checkAccess(EntityInterface $entity, $operation, $langcode) {
     // The $opereration parameter tells you what sort of operation access is
     // being checked for.
     if ($operation == 'view') {
